@@ -1,33 +1,31 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
-require('dotenv').config();
+const inputEl = document.getElementById("input-el");
+const btnEl = document.getElementById("btn-el");
+let listEl = document.getElementById("list-el");
 
-const firebaseConfig = {
-    apiKey: FIREBASE_API_KEY,
-    authDomain: "movies-list-308db.firebaseapp.com",
-    databaseURL: FIREBASE_DATABASE_URL,
-    projectId: "movies-list-308db",
-    storageBucket: "movies-list-308db.appspot.com",
-    messagingSenderId: "295802677679",
-    appId: "1:295802677679:web:68dfa756f05cf178fc675a"
-  };
+let allItems = [];
 
+btnEl.addEventListener("click", () => {
+  if (inputEl.value) {
+    allItems.push(inputEl.value);
+    render(allItems);
+    inputEl.value = "";
+  }
+});
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+function render(items) {
+  listEl.textContent = "";
+  let list = "";
+  for (let i = 0; i < items.length; i++) {
+    list += `
+    <div class='item'><input type='checkbox'>${items[i]}</div>
+    `;
+  }
+  listEl.innerHTML = list
+}
 
-console.log(app);
-
-console.log(database);
-
-const moviesInDb = ref(database, 'movies')
-
-const inputEl = document.getElementById('input-el')
-const btnEl = document.getElementById('btn-el')
-
-btnEl.addEventListener('click', (event) => {
-    event.preventDefault()
-    let inputValue = inputEl.value
-    push(moviesInDb, inputValue)
-    console.log(inputEl.value, "added to db")
+listEl.addEventListener('change', (event)=>{
+  if (event.target && event.target.matches('input[type="checkbox"]')) {
+    event.target.parentElement.remove()
+  }
+  
 })

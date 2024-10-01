@@ -13,19 +13,20 @@ body {
   margin: 30px auto;
   border: 1px solid wheat;
   padding-bottom: 20px;
+  text-align: center;
   
 }
 
 h1{
     color: aliceblue;
-    text-shadow: 1px 1px 5px rgb(78, 49, 49);
+    text-shadow: 1px 1px 3px rgb(122, 72, 72), -1px -1px 3px rgb(122, 72, 72);
     margin: 0 auto;
     margin: 20px auto;
     line-height: 40px;
     width: 300px;
     padding: 0;
     text-align: center;
-    background-color: rgb(226, 226, 225);
+    background-color: rgb(235, 235, 235);
 }
 
 img{
@@ -63,4 +64,20 @@ img{
 
 #btn-el:active{
     background-color: rgb(126, 109, 109);
+}
+
+h3{
+    text-align: left;
+    margin-top: 40px;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+#list-el{
+    background-color: rgb(235, 235, 235);
+    text-align: left;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+
 }
